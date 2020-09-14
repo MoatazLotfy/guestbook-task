@@ -3,7 +3,7 @@
   width: 350px;
   margin-top: 20%;
   margin-bottom: auto;
-  background: #f39c12;
+  background: #7acedd;
   position: relative;
   display: flex;
   justify-content: center;
@@ -18,17 +18,17 @@
 }
 .brand_logo_container {
   position: absolute;
-  height: 170px;
-  width: 170px;
+  height: 180px;
+  width: 180px;
   top: -75px;
   border-radius: 50%;
-  background: #f8f8f8;
+  background: #014058;
   padding: 10px;
   text-align: center;
 }
 .brand_logo {
-  height: 150px;
-  width: 150px;
+  height: 160px;
+  width: 160px;
   border-radius: 50%;
   border: 2px solid white;
 }
@@ -37,7 +37,7 @@
 }
 .login_btn {
   width: 100%;
-  background: #c0392b !important;
+  background: #014058 !important;
   color: white !important;
 }
 .login_btn:focus {
@@ -48,7 +48,7 @@
   padding: 0 2rem;
 }
 .input-group-text {
-  background: #c0392b !important;
+  background: #014058 !important;
   color: white !important;
   border: 0 !important;
   border-radius: 0.25rem 0 0 0.25rem !important;

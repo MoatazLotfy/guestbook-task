@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "../css/Login.css";
 import logoUrl from "../logo.png";
-class Login extends Component {
-  //state = {  }
+
+class Signup extends Component {
+  state = {};
   render() {
     return (
       <div className="container h-100">
@@ -16,47 +17,42 @@ class Login extends Component {
             <div className="d-flex justify-content-center form_container">
               <form>
                 <div className="input-group mb-3">
-                  <div className="input-group-append">
-                    <span className="input-group-text">
-                      <i className="fas fa-user"></i>
-                    </span>
-                  </div>
                   <input
                     type="text"
                     name=""
-                    className="form-control input_user"
-                    placeholder="username"
+                    className="form-control input_user m-2"
+                    placeholder="First name"
+                  />
+                  <input
+                    type="text"
+                    name=""
+                    className="form-control input_user m-2"
+                    placeholder="Last name"
                   />
                 </div>
                 <div className="input-group mb-2">
-                  <div className="input-group-append">
-                    <span className="input-group-text">
-                      <i className="fas fa-key"></i>
-                    </span>
-                  </div>
+                  <input
+                    type="email"
+                    name=""
+                    className="form-control input_user m-2"
+                    placeholder="Email"
+                  />
+                </div>
+                <div className="input-group mb-2">
                   <input
                     type="password"
                     name=""
-                    className="form-control input_pass"
+                    className="form-control input_pass m-2"
                     placeholder="password"
                   />
                 </div>
 
                 <div className="d-flex justify-content-center mt-3 login_container">
                   <button type="button" name="button" className="btn login_btn">
-                    Login
+                    Signup
                   </button>
                 </div>
               </form>
-            </div>
-
-            <div className="mt-4">
-              <div className="d-flex justify-content-center links">
-                Don't have an account?{" "}
-                <a href="#" className="ml-2">
-                  Sign Up
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -65,4 +61,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
