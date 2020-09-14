@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.2",
     "cors": "^2.8.5",
+    "joi": "^17.2.1",
     "mongoose": "^5.10.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
