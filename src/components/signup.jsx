@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import "../css/Login.css";
 import logoUrl from "../logo.png";
-import { useHistory } from "react-router-dom";
 
 class Signup extends Component {
   state = {};
 
   onSignup = () => {
-    let path = `/login`;
-    let history = useHistory();
-    history.push(path);
     let userInfo = {
       fname: this.refs.fname.value,
       lname: this.refs.lname.value,
