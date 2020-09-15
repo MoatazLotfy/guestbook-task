@@ -23,6 +23,8 @@ mongoose
     console.log("Not Connected to Database ERROR! ", err);
   });
 
+const userRouter = require("./routes/userRoute");
+
 app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
@@ -32,6 +34,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use("/api/user", userRouter);
 
 app.listen(port, hostname, (err) => {
   console.log(`Server running at http://${hostname}:${port}/`);
