@@ -3,6 +3,7 @@ import "../css/Login.css";
 import logoUrl from "../logo.png";
 import { Redirect, Route, Link, Switch } from "react-router-dom";
 import Signup from "./signup";
+import Gallery from "./gallery";
 class Login extends Component {
   onLogin = () => {
     let userInfo = {
@@ -19,6 +20,10 @@ class Login extends Component {
       .then((res) => {
         if (res.message == null) {
           this.setState({ message: "Logged in" });
+          localStorage.setItem("token", res.data);
+          setTimeout(() => {
+            this.setState({ redirect: "/gallery" });
+          }, 1000);
         } else {
           this.setState({ message: res.message });
         }
@@ -27,9 +32,13 @@ class Login extends Component {
 
   state = {};
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <Switch>
         <Route component={Signup} path="/signup" />
+        <Route component={Gallery} path="/gallery" />
         <Route component={Login} exact path="/">
           <div className="container h-100">
             <div className="d-flex justify-content-center h-100">

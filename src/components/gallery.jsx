@@ -4,9 +4,17 @@ import Cards from "./cards";
 class Gallery extends Component {
   state = {};
   async componentDidMount() {
-    await fetch("http://127.0.0.1:3006/api/guestbook/")
+    await fetch("http://127.0.0.1:3006/api/guestbook/", {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    })
       .then((response) => response.json())
-      .then((data) => this.setState({ data }));
+      .then((data) => {
+        if (data.message) {
+          this.setState({ message: data.message });
+        } else this.setState({ data });
+      });
   }
 
   render() {
@@ -17,7 +25,7 @@ class Gallery extends Component {
         </div>
       );
     } else {
-      return <h1>Loading...</h1>;
+      return <h1>{this.state.message}</h1>;
     }
   }
 }
