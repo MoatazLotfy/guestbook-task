@@ -25,6 +25,7 @@ mongoose
 
 const userRouter = require("./routes/userRoute");
 const authRouter = require("./routes/authRoute");
+const guestbookRouter = require("./routes/guestbookRoute");
 app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
@@ -37,6 +38,7 @@ app.use(
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/guestbook", guestbookRouter);
 
 app.listen(port, hostname, (err) => {
   console.log(`Server running at http://${hostname}:${port}/`);
