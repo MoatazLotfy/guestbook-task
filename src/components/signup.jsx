@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "../css/Login.css";
 import logoUrl from "../logo.png";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Login from "./login";
 
 class Signup extends Component {
-  state = {};
+  state = { redirect: null };
 
   onSignup = () => {
     let userInfo = {
@@ -22,6 +24,9 @@ class Signup extends Component {
       .then((res) => {
         if (res.message == null) {
           this.setState({ message: "New account created" });
+          setTimeout(() => {
+            this.setState({ redirect: "/" });
+          }, 1000);
         } else {
           if (res.message != "Invalid request") {
             this.setState({ message: res.message });
@@ -33,6 +38,9 @@ class Signup extends Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <div className="container h-100">
         <div className="d-flex justify-content-center h-100">
