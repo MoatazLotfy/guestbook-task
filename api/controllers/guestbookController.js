@@ -13,7 +13,7 @@ exports.retrieveAll = async function (req, res) {
 };
 
 exports.retrieveOne = async function (req, res) {
-  let guestbook = await guestbookModel.findOne({ userId: req.body.userId });
+  let guestbook = await guestbookModel.findOne({ userId: req.user._id });
   if (guestbook)
     return res
       .status(200)
@@ -21,7 +21,8 @@ exports.retrieveOne = async function (req, res) {
 };
 
 exports.createguestbook = async function (req, res) {
-  let user = await guestbookModel.findOne({ userId: req.body.userId });
+  let user = await guestbookModel.findOne({ userId: req.user._id });
+  console.log("userid  " + req.user._id);
   if (user)
     return res.status(400).json({
       data: null,
@@ -30,7 +31,7 @@ exports.createguestbook = async function (req, res) {
     });
 
   let guestbook = new guestbookModel({
-    userId: req.body.userId,
+    userId: req.user._id,
     messages: [],
   });
 

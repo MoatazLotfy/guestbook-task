@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../css/Login.css";
 import logoUrl from "../logo.png";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Login from "./login";
 
 class Signup extends Component {
   state = { redirect: null };

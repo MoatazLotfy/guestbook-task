@@ -23,3 +23,9 @@ exports.createUser = async function (req, res) {
   const token = user.generateAuthToken();
   return res.status(200).json({ data: token, message: null, errors: null });
 };
+
+exports.retrieveMe = async function (req, res) {
+  let user = await userModel.findOne({ _id: req.user._id });
+  if (user)
+    return res.status(200).json({ data: user, message: null, errors: null });
+};

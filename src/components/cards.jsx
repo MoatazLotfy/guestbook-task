@@ -5,7 +5,6 @@ import Card from "./card";
 class Cards extends Component {
   state = {};
   render() {
-    console.log(this.props.cardData.data[0].userId.fname);
     return (
       <section id="team" className="pb-5">
         <div className="container">

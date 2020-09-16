@@ -4,7 +4,7 @@ let guestbookController = require("../controllers/guestbookController");
 const auth = require("../routes/middleware/auth");
 
 router.get("/", auth, guestbookController.retrieveAll);
-router.get("/me", guestbookController.retrieveOne);
-router.post("/", guestbookController.createguestbook);
+router.get("/me", auth, guestbookController.retrieveOne);
+router.post("/", auth, guestbookController.createguestbook);
 
 module.exports = router;

@@ -20,6 +20,8 @@ class Login extends Component {
       .then((res) => {
         if (res.message == null) {
           this.setState({ message: "Logged in" });
+
+          localStorage.clear();
           localStorage.setItem("token", res.data);
           setTimeout(() => {
             this.setState({ redirect: "/gallery" });
