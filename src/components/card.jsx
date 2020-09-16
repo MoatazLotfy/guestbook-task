@@ -18,67 +18,20 @@ class Card extends Component {
                     />
                   </p>
                   <h4 className="card-title">{this.props.card.userId.fname}</h4>
-                  <p className="card-text">
-                    This is basic card with image on top, title, description and
-                    button.
-                  </p>
-                  <a
-                    href="https://www.fiverr.com/share/qb8D02"
-                    className="btn btn-primary btn-sm"
-                  >
-                    <i className="fa fa-plus"></i>
-                  </a>
+                  <p className="card-text">Look to my Guestbook</p>
                 </div>
               </div>
             </div>
             <div className="backside">
               <div className="card">
                 <div className="card-body text-center mt-4">
-                  <h4 className="card-title">Sunlimetech</h4>
+                  <h4 className="card-title">{this.props.card.userId.fname}</h4>
                   <p className="card-text">
-                    This is basic card with image on top, title, description and
-                    button.This is basic card with image on top, title,
-                    description and button.This is basic card with image on top,
-                    title, description and button.
+                    This is my guestbook and I hope you leave a lovely message.{" "}
+                    <br />
+                    Thank you
                   </p>
-                  <ul className="list-inline">
-                    <li className="list-inline-item">
-                      <a
-                        className="social-icon text-xs-center"
-                        target="_blank"
-                        href="https://www.fiverr.com/share/qb8D02"
-                      >
-                        <i className="fa fa-facebook"></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a
-                        className="social-icon text-xs-center"
-                        target="_blank"
-                        href="https://www.fiverr.com/share/qb8D02"
-                      >
-                        <i className="fa fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a
-                        className="social-icon text-xs-center"
-                        target="_blank"
-                        href="https://www.fiverr.com/share/qb8D02"
-                      >
-                        <i className="fa fa-skype"></i>
-                      </a>
-                    </li>
-                    <li className="list-inline-item">
-                      <a
-                        className="social-icon text-xs-center"
-                        target="_blank"
-                        href="https://www.fiverr.com/share/qb8D02"
-                      >
-                        <i className="fa fa-google"></i>
-                      </a>
-                    </li>
-                  </ul>
+                  <button className="btn btn-primary btn-sm">Messages</button>
                 </div>
               </div>
             </div>

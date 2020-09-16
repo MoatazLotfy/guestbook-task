@@ -1,8 +1,11 @@
-const guestbook = require("../models/guestbook");
 let guestbookModel = require("../models/guestbook");
 
 exports.retrieveAll = async function (req, res) {
-  let guestbook = await guestbookModel.find();
+  let guestbook = await guestbookModel
+    .find()
+    .select("-__v")
+    .populate("userId")
+    .exec();
   if (guestbook)
     return res
       .status(200)
