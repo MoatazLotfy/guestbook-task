@@ -1,12 +1,17 @@
 let messageModel = require("../models/message");
 let guestbookModel = require("../models/guestbook");
+let userModel = require("../models/user");
 
 exports.retrieveAll = async function (req, res) {
   let messages = await messageModel
     .find({
       guestbookId: req.header("guestbookId"),
     })
-    .populate("userId");
+    .populate("userId")
+    .populate({
+      path: "replys",
+      populate: { path: "userId" },
+    });
   if (messages)
     return res
       .status(200)

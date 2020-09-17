@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Reply extends Component {
-  state = {};
+  state = { reply: this.props.reply };
   render() {
     return (
       <ul class="comments">
@@ -13,12 +13,10 @@ class Reply extends Component {
           />
           <div class="post-comments">
             <p class="meta">
-              <a href="#">JohnDoe</a> says :{" "}
+              <a href="#">{`${this.state.reply.userId.fname} ${this.state.reply.userId.lname}`}</a>{" "}
+              says :{" "}
             </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
-              sapien odio, sit amet
-            </p>
+            <p>{this.state.reply.reply}</p>
           </div>
         </li>
       </ul>

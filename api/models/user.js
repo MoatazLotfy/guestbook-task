@@ -6,6 +6,9 @@ let schema = new mongoose.Schema({
   lname: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  replys: [
+    { type: mongoose.Schema.Types.ObjectId, required: false, ref: "reply" },
+  ],
 });
 
 schema.methods.generateAuthToken = function () {

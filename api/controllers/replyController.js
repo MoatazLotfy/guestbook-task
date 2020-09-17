@@ -1,5 +1,6 @@
 let replyModel = require("../models/reply");
 let messageModel = require("../models/message");
+let userModel = require("../models/user");
 
 exports.retrieveAll = async function (req, res) {
   let replys = await replyModel
@@ -16,7 +17,6 @@ exports.createreply = async function (req, res) {
     userId: req.user._id,
     reply: req.body.reply,
     messageId: req.body.messageId,
-    replys: [],
   });
 
   await reply.save();
