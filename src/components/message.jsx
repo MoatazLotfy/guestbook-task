@@ -5,7 +5,31 @@ import Replys from "./replys";
 class Message extends Component {
   state = { message: this.props.message };
 
-  onDelete = () => {};
+  onEdit = () => {
+    fetch("http://127.0.0.1:3006/api/messages/" + this.props.message._id, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        message: this.refs.edit.value,
+      }),
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.message == null) {
+          this.setState({ message: "New reply sent" });
+        } else {
+          if (res.message != "Invalid request") {
+            this.setState({ message: res.message });
+          } else {
+            this.setState({ message: "Invalid data" });
+          }
+        }
+      });
+  };
+
   onReply = () => {
     let replyInfo = {
       reply: this.refs.reply.value,
@@ -84,7 +108,17 @@ class Message extends Component {
               >
                 Delete
               </button>
-              <button className="btn btn-success">Edit</button>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Your edit"
+                aria-label="Your edit"
+                aria-describedby="basic-addon2"
+                ref="edit"
+              />{" "}
+              <button className="btn btn-success" onClick={this.onEdit}>
+                Edit
+              </button>
             </div>
             <div className="input-group mb-3">
               <input
