@@ -3,6 +3,9 @@ import Reply from "./reply";
 import Replys from "./replys";
 
 class Message extends Component {
+  state = { message: this.props.message };
+
+  onDelete = () => {};
   onReply = () => {
     let replyInfo = {
       reply: this.refs.reply.value,
@@ -58,7 +61,6 @@ class Message extends Component {
       });
   }
 
-  state = { message: this.props.message };
   render() {
     if (this.state.data && this.state.user) {
       return (
@@ -76,7 +78,12 @@ class Message extends Component {
             </p>
             <p>{this.state.message.message}</p>
             <div className="input-group mb-3">
-              <button className="btn btn-danger">Delete</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => this.props.onDelete(this.props.message._id)}
+              >
+                Delete
+              </button>
               <button className="btn btn-success">Edit</button>
             </div>
             <div className="input-group mb-3">

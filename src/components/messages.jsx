@@ -59,6 +59,24 @@ class Messages extends Component {
       });
   }
 
+  handleDelete = (messageId) => {
+    fetch("http://127.0.0.1:3006/api/messages/" + messageId, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.text()) // or res.json()
+      .then((res) => {
+        const message = this.props.card.messages.filter(
+          (c) => c._id != messageId
+        );
+        this.setState({ message });
+        console.log(res);
+      });
+  };
+
   render() {
     if (this.state.data && this.state.user) {
       return (
@@ -89,7 +107,7 @@ class Messages extends Component {
                 <hr />
                 <ul className="comments">
                   {this.state.data.data.map((message) => (
-                    <Message message={message} />
+                    <Message message={message} onDelete={this.props.onDelete} />
                   ))}
                 </ul>
               </div>
