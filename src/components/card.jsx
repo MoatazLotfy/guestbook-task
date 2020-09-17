@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
-import Messages from "./messages";
-import Guestbook from "./guestbook";
 
 class Card extends Component {
   state = { card: this.props.card };

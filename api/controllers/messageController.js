@@ -47,7 +47,6 @@ exports.updatemessage = async function (req, res) {
   let message = await messageModel.findById(req.params.id);
   if (!message)
     return res.status(404).send(response(null, "message not found", null));
-  console.log("yarab n5ls " + req.body.message);
   message.message = req.body.message ? req.body.message : message.message;
 
   message = await message.save();

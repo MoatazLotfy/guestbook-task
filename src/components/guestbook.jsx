@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Message from "./message";
+
 import Messages from "./messages";
 import Navbar from "./navbar";
 

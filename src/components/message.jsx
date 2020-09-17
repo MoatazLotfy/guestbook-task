@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Reply from "./reply";
+
 import Replys from "./replys";
 
 class Message extends Component {
