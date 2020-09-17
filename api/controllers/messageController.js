@@ -15,7 +15,7 @@ exports.retrieveAll = async function (req, res) {
 
 exports.createmessage = async function (req, res) {
   let message = new messageModel({
-    userId: req.body.userId,
+    userId: req.user._id,
     message: req.body.message,
     guestbookId: req.body.guestbookId,
     replys: [],

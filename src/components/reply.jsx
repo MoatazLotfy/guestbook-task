@@ -13,12 +13,7 @@ class Reply extends Component {
           />
           <div class="post-comments">
             <p class="meta">
-              Dec 20, 2014 <a href="#">JohnDoe</a> says :{" "}
-              <i class="pull-right">
-                <a href="#">
-                  <small>Reply</small>
-                </a>
-              </i>
+              <a href="#">JohnDoe</a> says :{" "}
             </p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a

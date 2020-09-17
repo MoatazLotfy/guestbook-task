@@ -4,6 +4,34 @@ import Message from "./message";
 
 class Messages extends Component {
   state = {};
+  onMessage = () => {
+    let messageInfo = {
+      message: this.refs.message.value,
+      guestbookId: this.props.card._id,
+    };
+
+    fetch("http://127.0.0.1:3006/api/messages/", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+
+      body: JSON.stringify(messageInfo),
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.message == null) {
+          this.setState({ message: "New message sent" });
+        } else {
+          if (res.message != "Invalid request") {
+            this.setState({ message: res.message });
+          } else {
+            this.setState({ message: "Invalid data" });
+          }
+        }
+      });
+  };
 
   async componentDidMount() {
     console.log(this.props.card);
@@ -42,17 +70,22 @@ class Messages extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Your comment"
-                    aria-label="Your comment"
+                    placeholder="Your message"
+                    aria-label="Your message"
                     aria-describedby="basic-addon2"
+                    ref="message"
                   />
                   <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" type="button">
-                      Comment
+                    <button
+                      className="btn btn-outline-secondary"
+                      onClick={this.onMessage}
+                      type="button"
+                    >
+                      Send
                     </button>
                   </div>
                 </div>
-                <h3 className="text-success">Comments</h3>
+                <h3 className="text-success">Messages</h3>
                 <hr />
                 <ul className="comments">
                   {this.state.data.data.map((message) => (
