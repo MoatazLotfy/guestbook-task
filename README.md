@@ -1,3 +1,5 @@
+### Guestbook allow users to post their guestbook and reply on friends' messages or even see other guestbooks and message their owners. 
+
 ## installaion
 
 Make sure to install node modules `npm install`
@@ -9,7 +11,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.<b
 The page will reload if you make edits.<br />
 
 Backend : <br/>
-Run `node api/main.js` in terminal
+Run `node api/main.js` in terminal.<br/>
+
+Database : <br/>
+MongoDB server must be running.
 
 ### Application sequence
 
