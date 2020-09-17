@@ -85,6 +85,32 @@ class Message extends Component {
         this.setState({ user: data.data });
       });
   }
+  renderTag = () => {
+    if (this.state.user._id == this.props.message.userId._id) {
+      console.log("true");
+      return (
+        <div className="input-group mb-3">
+          <button
+            className="btn btn-danger"
+            onClick={() => this.props.onDelete(this.props.message._id)}
+          >
+            Delete
+          </button>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Your edit"
+            aria-label="Your edit"
+            aria-describedby="basic-addon2"
+            ref="edit"
+          />{" "}
+          <button className="btn btn-success" onClick={this.onEdit}>
+            Edit
+          </button>
+        </div>
+      );
+    }
+  };
 
   render() {
     if (this.state.data && this.state.user) {
@@ -102,25 +128,7 @@ class Message extends Component {
               says :
             </p>
             <p>{this.state.message.message}</p>
-            <div className="input-group mb-3">
-              <button
-                className="btn btn-danger"
-                onClick={() => this.props.onDelete(this.props.message._id)}
-              >
-                Delete
-              </button>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Your edit"
-                aria-label="Your edit"
-                aria-describedby="basic-addon2"
-                ref="edit"
-              />{" "}
-              <button className="btn btn-success" onClick={this.onEdit}>
-                Edit
-              </button>
-            </div>
+
             <div className="input-group mb-3">
               <input
                 type="text"
@@ -130,6 +138,8 @@ class Message extends Component {
                 aria-describedby="basic-addon2"
                 ref="reply"
               />
+
+              {this.renderTag()}
 
               <div className="input-group-append">
                 <button
