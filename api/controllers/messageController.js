@@ -1,7 +1,12 @@
 let messageModel = require("../models/message");
+let guestbookModel = require("../models/guestbook");
 
 exports.retrieveAll = async function (req, res) {
-  let messages = await messageModel.find({ guestbookId: req.body.guestbookId });
+  let messages = await messageModel
+    .find({
+      guestbookId: req.header("guestbookId"),
+    })
+    .populate("userId");
   if (messages)
     return res
       .status(200)
@@ -17,6 +22,10 @@ exports.createmessage = async function (req, res) {
   });
 
   await message.save();
+
+  const guestbook = await guestbookModel.findById(req.body.guestbookId);
+  guestbook.messages.push(message);
+  await guestbook.save();
 
   return res.status(200).json({ data: message, message: null, errors: null });
 };

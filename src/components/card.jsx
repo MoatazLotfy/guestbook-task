@@ -4,7 +4,7 @@ import Messages from "./messages";
 import Guestbook from "./guestbook";
 
 class Card extends Component {
-  state = {};
+  state = { card: this.props.card };
   render() {
     return (
       <div className="col-xs-12 col-sm-6 col-md-4">
@@ -35,7 +35,15 @@ class Card extends Component {
                     Thank you
                   </p>
 
-                  <Link className="btn btn-primary btn-sm" to="/guestbook">
+                  <Link
+                    className="btn btn-primary btn-sm"
+                    to={{
+                      pathname: "/guestbook",
+                      state: {
+                        card: this.state.card,
+                      },
+                    }}
+                  >
                     Messages
                   </Link>
                 </div>

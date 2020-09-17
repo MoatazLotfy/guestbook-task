@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Reply from "./reply";
 
 class Message extends Component {
-  state = {};
+  state = { message: this.props.message };
   render() {
     return (
       <li class="clearfix">
@@ -13,17 +13,30 @@ class Message extends Component {
         />
         <div class="post-comments">
           <p class="meta">
-            Dec 18, 2014 <a href="#">JohnDoe</a> says :{" "}
+            {" "}
+            <a href="#">{`${this.state.message.userId.fname} ${this.state.message.userId.lname}`}</a>{" "}
+            says :{" "}
             <i class="pull-right">
               <a href="#">
                 <small>Reply</small>
               </a>
             </i>
           </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a
-            sapien odio, sit amet
-          </p>
+          <p>{this.state.message.message}</p>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your reply"
+              aria-label="Your reply"
+              aria-describedby="basic-addon2"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Reply
+              </button>
+            </div>
+          </div>
         </div>
         <Reply />
       </li>
