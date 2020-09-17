@@ -18,30 +18,11 @@ class Guestbook extends Component {
       });
   }
 
-  handleDelete = (messageId) => {
-    fetch("http://127.0.0.1:3006/api/messages/" + messageId, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json",
-        "x-auth-token": localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.text()) // or res.json()
-      .then((res) => {
-        const messages = this.state.card.messages.filter(
-          (c) => c._id != messageId
-        );
-        this.setState({ messages });
-        console.log(res);
-      });
-  };
-
   render() {
     if (this.state.card && this.state.user) {
       return (
         <div>
-          <Navbar user={this.state.user} />{" "}
-          <Messages card={this.state.card} onDelete={this.handleDelete} />
+          <Navbar user={this.state.user} /> <Messages card={this.state.card} />
         </div>
       );
     } else {

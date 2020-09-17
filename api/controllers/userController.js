@@ -29,3 +29,17 @@ exports.retrieveMe = async function (req, res) {
   if (user)
     return res.status(200).json({ data: user, message: null, errors: null });
 };
+
+exports.retrieveOne = async function (req, res) {
+  let user = await userModel.findById(req.params.id);
+
+  if (user) {
+    let username = {
+      fname: user.fname,
+      lname: user.lname,
+    };
+    return res
+      .status(200)
+      .json({ data: username, message: null, errors: null });
+  }
+};

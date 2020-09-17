@@ -7,5 +7,6 @@ const auth = require("../routes/middleware/auth");
 
 router.post("/", ValidationMiddleware(schema.user), userController.createUser);
 router.get("/me", auth, userController.retrieveMe);
+router.get("/:id", auth, userController.retrieveOne);
 
 module.exports = router;

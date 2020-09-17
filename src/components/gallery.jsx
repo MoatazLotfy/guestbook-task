@@ -4,6 +4,7 @@ import Navbar from "./navbar";
 
 class Gallery extends Component {
   state = {};
+
   async componentDidMount() {
     await fetch("http://127.0.0.1:3006/api/guestbook/", {
       headers: {

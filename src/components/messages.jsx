@@ -3,7 +3,10 @@ import "../css/messages.css";
 import Message from "./message";
 
 class Messages extends Component {
-  state = {};
+  state = {
+    messages: this.props.card.messages,
+  };
+
   onMessage = () => {
     let messageInfo = {
       message: this.refs.message.value,
@@ -22,6 +25,15 @@ class Messages extends Component {
       .then((r) => r.json())
       .then((res) => {
         if (res.message == null) {
+          let wholeMessagesdata = { ...this.state.data };
+
+          const messag = [...this.state.data.data];
+          const list = this.state.data.data.concat(res.data);
+
+          wholeMessagesdata.data = list;
+
+          this.setState({ data: wholeMessagesdata });
+
           this.setState({ message: "New message sent" });
         } else {
           if (res.message != "Invalid request") {
@@ -34,7 +46,6 @@ class Messages extends Component {
   };
 
   async componentDidMount() {
-    console.log(this.props.card);
     await fetch("http://127.0.0.1:3006/api/messages/", {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
@@ -69,10 +80,11 @@ class Messages extends Component {
     })
       .then((res) => res.text()) // or res.json()
       .then((res) => {
-        const message = this.props.card.messages.filter(
-          (c) => c._id != messageId
-        );
-        this.setState({ message });
+        let wholeMessagesdata = { ...this.state.data };
+        const messag = [...this.state.data.data];
+        const message = messag.filter((c) => c._id != messageId);
+        wholeMessagesdata.data = message;
+        this.setState({ data: wholeMessagesdata });
         console.log(res);
       });
   };
@@ -109,7 +121,7 @@ class Messages extends Component {
                   {this.state.data.data.map((message) => (
                     <Message
                       message={message}
-                      onDelete={this.props.onDelete}
+                      onDelete={this.handleDelete}
                       key={message._id}
                     />
                   ))}

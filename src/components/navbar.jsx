@@ -7,27 +7,7 @@ class Navbar extends Component {
     this.setState({ redirect: "/" });
     localStorage.clear();
   };
-  onAddGuestbook = () => {
-    fetch("http://127.0.0.1:3006/api/guestbook/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "x-auth-token": localStorage.getItem("token"),
-      },
-      body: "",
-    })
-      .then((r) => r.json())
-      .then((res) => {
-        console.log(JSON.stringify(res));
-        if (res.message == null) {
-          this.setState({ data: res });
-        } else {
-          if (res.message != "Invalid request") {
-            this.setState({ message: res.message });
-          }
-        }
-      });
-  };
+
   state = {};
   render() {
     if (this.state.redirect) {
@@ -60,12 +40,6 @@ class Navbar extends Component {
               </a>
             </li>
 
-            <li className="nav-item">
-              <button className="btn btn-primary" onClick={this.onAddGuestbook}>
-                {" "}
-                Add my guestbook
-              </button>
-            </li>
             <li className="nav-item">
               <h5 className="badge badge-danger">{this.state.message}</h5>
             </li>

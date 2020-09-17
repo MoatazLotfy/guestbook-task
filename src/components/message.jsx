@@ -50,6 +50,15 @@ class Message extends Component {
       .then((r) => r.json())
       .then((res) => {
         if (res.message == null) {
+          let wholeMessagesdata = { ...this.state.data };
+          const replys = [...this.state.data.data];
+          const addUserdata = res.data;
+          const list = this.state.data.data.concat(res.data);
+
+          wholeMessagesdata.data = list;
+
+          this.setState({ data: wholeMessagesdata });
+
           this.setState({ mess: "New reply sent" });
         } else {
           if (res.message != "Invalid request") {
@@ -72,7 +81,9 @@ class Message extends Component {
       .then((data) => {
         if (data.message) {
           this.setState({ message: data.message });
-        } else this.setState({ data });
+        } else {
+          this.setState({ data });
+        }
       });
 
     await fetch("http://127.0.0.1:3006/api/user/me", {
@@ -84,10 +95,31 @@ class Message extends Component {
       .then((data) => {
         this.setState({ user: data.data });
       });
+
+    let UserID = "";
+    if (typeof this.state.message.userId === "string") {
+      UserID = this.state.message.userId;
+    } else {
+      UserID = this.state.message.userId._id;
+    }
+    await fetch("http://127.0.0.1:3006/api/user/" + UserID, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ commentuser: data.data });
+      });
   }
   renderTag = () => {
-    if (this.state.user._id == this.props.message.userId._id) {
-      console.log("true");
+    let UserID = "";
+    if (typeof this.state.message.userId === "string") {
+      UserID = this.state.message.userId;
+    } else {
+      UserID = this.state.message.userId._id;
+    }
+    if (this.state.user._id == UserID) {
       return (
         <div className="input-group mb-3">
           <button
@@ -113,7 +145,7 @@ class Message extends Component {
   };
 
   render() {
-    if (this.state.data && this.state.user) {
+    if (this.state.data && this.state.user && this.state.commentuser) {
       return (
         <li className="clearfix">
           <img
@@ -124,7 +156,7 @@ class Message extends Component {
           <div className="post-comments">
             <p className="meta">
               {" "}
-              <a href="#">{`${this.props.message.userId.fname} ${this.props.message.userId.lname}`}</a>{" "}
+              <a href="#">{`${this.state.commentuser.fname} ${this.state.commentuser.lname}`}</a>{" "}
               says :
             </p>
             <p>{this.state.message.message}</p>
@@ -152,7 +184,7 @@ class Message extends Component {
               </div>
             </div>
           </div>
-          {this.props.message.replys.map((reply) => (
+          {this.state.data.data.map((reply) => (
             <Replys reply={reply} key={reply._id} />
           ))}
         </li>
