@@ -1,4 +1,4 @@
-### Guestbook allow users to post their guestbook and reply on friends' messages or even see other guestbooks and message their owners. 
+### Guestbook allows users to post their guestbook and reply on friends' messages or even see other guestbooks and message their owners. 
 
 ## installaion
 
