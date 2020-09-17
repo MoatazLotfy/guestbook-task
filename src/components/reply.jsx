@@ -4,15 +4,15 @@ class Reply extends Component {
   state = { reply: this.props.reply };
   render() {
     return (
-      <ul class="comments">
-        <li class="clearfix">
+      <ul className="comments">
+        <li className="clearfix">
           <img
             src="https://bootdey.com/img/Content/user_3.jpg"
-            class="avatar"
+            className="avatar"
             alt=""
           />
-          <div class="post-comments">
-            <p class="meta">
+          <div className="post-comments">
+            <p className="meta">
               <a href="#">{`${this.state.reply.userId.fname} ${this.state.reply.userId.lname}`}</a>{" "}
               says :{" "}
             </p>

@@ -107,7 +107,11 @@ class Messages extends Component {
                 <hr />
                 <ul className="comments">
                   {this.state.data.data.map((message) => (
-                    <Message message={message} onDelete={this.props.onDelete} />
+                    <Message
+                      message={message}
+                      onDelete={this.props.onDelete}
+                      key={message._id}
+                    />
                   ))}
                 </ul>
               </div>

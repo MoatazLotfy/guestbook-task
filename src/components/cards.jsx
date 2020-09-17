@@ -11,7 +11,7 @@ class Cards extends Component {
           <h5 className="section-title h1">Guestbooks</h5>
           <div className="row">
             {this.props.cardData.data.map((card) => (
-              <Card card={card} />
+              <Card card={card} key={card._id} />
             ))}
           </div>
         </div>

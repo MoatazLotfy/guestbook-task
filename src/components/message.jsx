@@ -18,13 +18,15 @@ class Message extends Component {
     })
       .then((r) => r.json())
       .then((res) => {
+        let Mes = { ...this.state.message };
+        Mes.message = this.refs.edit.value;
         if (res.message == null) {
-          this.setState({ message: "New reply sent" });
+          this.setState({ message: Mes });
         } else {
           if (res.message != "Invalid request") {
-            this.setState({ message: res.message });
+            this.setState({ mess: res.message });
           } else {
-            this.setState({ message: "Invalid data" });
+            this.setState({ mess: "Invalid data" });
           }
         }
       });
@@ -48,19 +50,18 @@ class Message extends Component {
       .then((r) => r.json())
       .then((res) => {
         if (res.message == null) {
-          this.setState({ message: "New reply sent" });
+          this.setState({ mess: "New reply sent" });
         } else {
           if (res.message != "Invalid request") {
-            this.setState({ message: res.message });
+            this.setState({ mess: res.message });
           } else {
-            this.setState({ message: "Invalid data" });
+            this.setState({ mess: "Invalid data" });
           }
         }
       });
   };
 
   async componentDidMount() {
-    console.log("es7aaaaaaa " + JSON.stringify(this.props.message._id));
     await fetch("http://127.0.0.1:3006/api/reply/", {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
@@ -142,7 +143,7 @@ class Message extends Component {
             </div>
           </div>
           {this.props.message.replys.map((reply) => (
-            <Replys reply={reply} />
+            <Replys reply={reply} key={reply._id} />
           ))}
         </li>
       );

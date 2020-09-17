@@ -1,9 +1,23 @@
 import React, { Component } from "react";
 import Message from "./message";
 import Messages from "./messages";
+import Navbar from "./navbar";
 
 class Guestbook extends Component {
   state = { card: this.props.location.state.card };
+
+  async componentDidMount() {
+    await fetch("http://127.0.0.1:3006/api/user/me", {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ user: data.data });
+      });
+  }
+
   handleDelete = (messageId) => {
     fetch("http://127.0.0.1:3006/api/messages/" + messageId, {
       method: "DELETE",
@@ -23,8 +37,13 @@ class Guestbook extends Component {
   };
 
   render() {
-    if (this.state.card) {
-      return <Messages card={this.state.card} onDelete={this.handleDelete} />;
+    if (this.state.card && this.state.user) {
+      return (
+        <div>
+          <Navbar user={this.state.user} />{" "}
+          <Messages card={this.state.card} onDelete={this.handleDelete} />
+        </div>
+      );
     } else {
       return <h1>Loading....</h1>;
     }

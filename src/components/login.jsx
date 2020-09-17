@@ -21,12 +21,9 @@ class Login extends Component {
       .then((res) => {
         if (res.message == null) {
           this.setState({ message: "Logged in" });
-
           localStorage.clear();
           localStorage.setItem("token", res.data);
-          setTimeout(() => {
-            this.setState({ redirect: "/gallery" });
-          }, 1000);
+          this.setState({ redirect: "/gallery" });
         } else {
           this.setState({ message: res.message });
         }
@@ -36,12 +33,24 @@ class Login extends Component {
   state = {};
   render() {
     if (this.state.redirect) {
-      return <Redirect to={this.state.redirect} />;
+      return (
+        <div>
+          {" "}
+          <Switch>
+            {" "}
+            <Route component={Gallery} path="/gallery" />
+            <Route component={Signup} path="/signup" />
+            <Route component={Guestbook} path="/guestbook" />
+          </Switch>
+          <Redirect to={this.state.redirect} />;
+        </div>
+      );
     }
     return (
       <Switch>
-        <Route component={Signup} path="/signup" />
         <Route component={Gallery} path="/gallery" />
+        <Route component={Signup} path="/signup" />
+
         <Route component={Guestbook} path="/guestbook" />
         <Route component={Login} exact path="/">
           <div className="container h-100">

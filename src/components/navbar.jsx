@@ -1,9 +1,13 @@
 import e from "cors";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "../css/nav.css";
 
 class Navbar extends Component {
+  onLogout = () => {
+    this.setState({ redirect: "/" });
+    localStorage.clear();
+  };
   onAddGuestbook = () => {
     fetch("http://127.0.0.1:3006/api/guestbook/", {
       method: "POST",
@@ -27,6 +31,9 @@ class Navbar extends Component {
   };
   state = {};
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <nav className="navbar navbar-expand-sm   navbar-light bg-light">
         <button
@@ -49,15 +56,11 @@ class Navbar extends Component {
               </button>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="./gallery">
                 Gallery <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                My guestbook
-              </a>
-            </li>
+
             <li className="nav-item">
               <button className="btn btn-primary" onClick={this.onAddGuestbook}>
                 {" "}
@@ -69,7 +72,11 @@ class Navbar extends Component {
             </li>
           </ul>
           <div className="social-part">
-            <button className="btn btn-secondary" aria-hidden="true">
+            <button
+              className="btn btn-secondary"
+              aria-hidden="true"
+              onClick={this.onLogout}
+            >
               Logout{" "}
             </button>
           </div>
