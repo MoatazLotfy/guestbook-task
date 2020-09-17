@@ -76,6 +76,10 @@ class Message extends Component {
             </p>
             <p>{this.state.message.message}</p>
             <div className="input-group mb-3">
+              <button className="btn btn-danger">Delete</button>
+              <button className="btn btn-success">Edit</button>
+            </div>
+            <div className="input-group mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -84,6 +88,7 @@ class Message extends Component {
                 aria-describedby="basic-addon2"
                 ref="reply"
               />
+
               <div className="input-group-append">
                 <button
                   className="btn btn-outline-secondary"
