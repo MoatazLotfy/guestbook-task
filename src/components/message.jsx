@@ -4,6 +4,7 @@ import Reply from "./reply";
 class Message extends Component {
   state = { message: this.props.message };
   render() {
+    console.log("haaaaaaaaa" + JSON.stringify(this.state.message));
     return (
       <li className="clearfix">
         <img
