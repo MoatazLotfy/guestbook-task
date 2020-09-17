@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
+import Messages from "./messages";
+import Guestbook from "./guestbook";
 
 class Card extends Component {
   state = {};
@@ -31,7 +34,10 @@ class Card extends Component {
                     <br />
                     Thank you
                   </p>
-                  <button className="btn btn-primary btn-sm">Messages</button>
+
+                  <Link className="btn btn-primary btn-sm" to="/guestbook">
+                    Messages
+                  </Link>
                 </div>
               </div>
             </div>
