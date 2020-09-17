@@ -1,6 +1,6 @@
 ## installaion
 
-Make sure to install Node and node modules
+Make sure to install node modules `npm install`
 
 ### Run app
 Frontend : <br />
